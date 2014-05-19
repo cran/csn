@@ -25,7 +25,7 @@ dcsn <- function(x, mu, sigma, gamma, nu, delta){
     stop("incorrect 'delta'")
   for (i in 1:nrow(x)){
    f1 <- pmnorm(0,nu,delta+gamma%*%sigma%*%t(gamma))
-   f2 <- pmnorm(gamma%*%(x[i,]-mu), nu, delta)
+   f2 <- pmnorm(as.vector(gamma%*%(x[i,]-mu)), nu, delta)
    f3 <- dmnorm(x[i,], mu, sigma)
    result[i] <- (f1^(-1))*f2*f3 
   }
